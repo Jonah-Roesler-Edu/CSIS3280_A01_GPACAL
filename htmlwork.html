@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <h1></h1>
+
+        <h2>Create Course</h2>
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input type="hidden" name="flag" value="create">
+            <input type="text" name="crSN">
+            <input type="text" name="crFN">
+            <input type="text" name="crPerc">
+            <input type="number" name="crCredit">
+        </form>
+
+        <h2>Edit Course</h2>
+        <form method="POST" action="" enctype="multipart/form-data">
+            <input type="hidden" name="flag" value="edit">
+            <input type="text" name="edSN">
+            <input type="text" name="edFN">
+            <input type="text" name="edPerc">
+            <input type="number" name="edCredit">
+        </form>
+
+
+        <table>
+            <thead>
+                <th>Short Name</th>
+                <th>Long Name</th>
+                <th>Percentage</th>
+                <th>Credit Hours</th>
+                <th>Letter Grade</th>
+                <th>GPA Points</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </thead>
+        </table>
+
+    </body>
+</html>

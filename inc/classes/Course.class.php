@@ -1,0 +1,125 @@
+<?php
+
+// coursecode,fullname,percentile,credithours
+
+class Course implements ICourse {
+
+    //short name/course code
+
+    private $_sName = "";
+    private $_fName = "";
+    private $_percentage = "";
+    private $_cHours = "";
+    private $_lGrade = "";
+    private $_gpaPoint = "";
+
+
+    function __construct()
+    {
+                
+    }
+
+    //Default constructor
+    public function setCourseInfo(   $code = "X", 
+                    $name = "Y", 
+                    $percent = 0, 
+                    $credit = 0) {
+
+        $this->_sName = $code;
+        $this->_fName = $name;
+        $this->_percentage = $percent;
+        $this->$_cHours = $credit;
+        //Set the percentile because we need it later.
+        //Call calcScores to calculate letter grade and GPA points
+        $this->calcScores();
+    }
+
+
+
+    //Getters
+    public function getShortName(){return $this->_sName; }
+
+    public function getFullName(){return $this->_fName; }
+
+    public function getPercentile(){return $this->_percent; }
+    
+    public function getCreditHours() : int { return $this->_cHours; }
+
+    public function getLetterGrade(){return $this->_lGrade; }
+
+    public function getGPA(){return $this->_gpaPoint; }
+
+
+
+    //Calculate the GPA points and grade based on percent
+    public function calcScores(){
+        $this->_grade = "";
+        if($this->_percent > 49) {
+            if($this->_percent > 54) {
+                if($this->_percent > 59) {
+                    if($this->_percent > 64) {
+                        if($this->_percent > 69) {
+                            if($this->_percent > 74) {
+                                if($this->_percent > 79) {
+                                    if($this->_percent > 84) {
+                                        if($this->_percent > 89) {
+                                            if($this->_percent > 94) {
+                                                $this->_grade = "A+";
+                                                $this->_gpaPoint = 4.33;
+                                            }else{ 
+                                            $this->_grade = "A"; 
+                                            $this->_gpaPoint = 4;}
+                                        }else{  
+                                        $this->_grade = "A-"; 
+                                        $this->_gpaPoint = 3.67;}
+                                    }else{ 
+                                    $this->_grade = "B+"; 
+                                    $this->_gpaPoint = 3.33;}
+                                }else{
+                                $this->_grade = "B"; 
+                                $this->_gpaPoint = 3;}
+                            }else{ 
+                            $this->_grade = "B-"; 
+                            $this->_gpaPoint = 2.67;}
+                        }else{ 
+                        $this->_grade = "C+"; 
+                        $this->_gpaPoint = 2.33;}
+                    }else{
+                    $this->_grade = "C";
+                    $this->_gpaPoint = 2;}
+                }else{ 
+                $this->_grade = "C-";
+                $this->_gpaPoint = 1.67;}
+            } else{ 
+            $this->_grade = "P";
+            $this->_gpaPoint = 1;}
+
+        } else { 
+        $this->_grade = "F";
+        $this->_gpaPoint = 0;}
+
+        return $this->_grade;
+    }
+
+    //Setters
+
+    public function setFullName(string $fullName) {
+        $this->_fName = $fullName;
+    }
+
+    public function setShortName(string $shortName) {
+        $this->_sName = $shortName;
+    }  
+
+    public function setPercentile(string $percentile) {
+        $this->_percentile = $percentile;
+        $this->calcScores();
+    }
+
+    public function setCreditHours(int $creditHours) {
+        $this->_cHours = $creditHours;
+    }
+
+}
+
+?>
