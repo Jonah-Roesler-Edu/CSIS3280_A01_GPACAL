@@ -8,19 +8,19 @@ class courseService {
 
 //Add the service back
     //Store the courses in an array
-    function addCourse($course) {
+    static function addCourse($course) {
         $_courses[] = $course;
     }
 
     //This function creates a single course
-    // function createCourse() {
-    //     $course = new Course(
-    //         $_POST["crSN"],
-    //         $_POST["crFN"],
-    //         $_POST["crPerc"],
-    //         $_POST["crCredit"]);
-    //     return $course;
-    // }   
+    static function createCourse() {
+        $course = new Course(
+            $_POST["crSN"],
+            $_POST["crFN"],
+            $_POST["crPerc"],
+            $_POST["crCredit"]);
+        return $course;
+    }   
 
 
     //This function reads a single course given the title.
@@ -29,7 +29,7 @@ class courseService {
         try {
             //flag for finding course
             $coursefound = null;
-            foreach($_courses as $course) {
+            foreach(self::$_courses as $course) {
                 if($course[0] == $shortName) {
                     $coursefound = $course;
                 }
@@ -52,10 +52,10 @@ class courseService {
     static function deleteCourse(string $shortName) 
     {
         //read all the courses in
-        for($i=0;$i<count(self::$courses);$i++)
+        for($i=0;$i<count(self::$_courses);$i++)
         {
             // $shortName = $_POST["cShortName"];
-            if($shortName == self::$courses[$i][0])
+            if($shortName == self::$_courses[$i][0])
             {
                 //Pull the current course out of the array
                 array_splice($courses,$i,1);
@@ -91,7 +91,7 @@ class courseService {
         }
 
         //Write the file
-         self::writeContent($updArray);
+         self::writeContent($updateCourse);
         
     }
 
@@ -151,7 +151,7 @@ class courseService {
                     //Populate the attributes
                     $newCourse->setShortName($columns[0]);
                     $newCourse->setFullName($columns[1]);
-                    $newCourse->setPercentage($columns[2]);
+                    $newCourse->setPercentile($columns[2]);
                     $newCourse->setCreditHours($columns[3]);
         
                     //Push the course to the collection
@@ -169,8 +169,12 @@ class courseService {
         }
 
         //This function returns a list of courses, course objects in an array.
-        function getCourses() {
-            return self::$_courses;
-        } 
+        
     }
+    static function getCourses() {
+        return self::$_courses;
+    }
+ 
 }
+
+?>
