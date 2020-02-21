@@ -11,7 +11,7 @@ class Page  {
         self::$_title = $title;
     }
 
-    function listCourses(Array $courses)    {
+    static function listCourses(Array $courses)    {
     ?>
     <table>
         <thead>
@@ -51,7 +51,7 @@ class Page  {
     <?php 
     }
 
-    function createCourse() { ?>
+    static function createCourse() { ?>
         <h2>Create Course</h2>
         <form method="POST" action="" enctype="multipart/form-data">
             <input type="hidden" name="flag" value="create">
@@ -59,10 +59,11 @@ class Page  {
             <input type="text" name="crFN">
             <input type="text" name="crPerc">
             <input type="number" name="crCredit">
+            <input type="submit" name="Add">
         </form>
     <?php }
 
-    function editCourse(Course $course) { ?>
+    static function editCourse(Course $course) { ?>
         <h2>Edit Course</h2>
         <form method="POST" action="" enctype="multipart/form-data">
             <input type="hidden" name="flag" value="edit">
@@ -76,7 +77,7 @@ class Page  {
     function showGPA(Array $courses)  {
     }
 
-    function htmlHead() {
+    static function htmlHead() {
     ?>
         <!DOCTYPE html>
         <html>
@@ -88,7 +89,7 @@ class Page  {
     <?php
     }
 
-    function htmlFoot() {
+    static function htmlFoot() {
     ?>
             </body>
     </html>
