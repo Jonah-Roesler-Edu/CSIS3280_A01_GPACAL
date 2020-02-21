@@ -18,7 +18,7 @@ require_once("inc\classes\Course.class.php");
 //Require static classes
 require_once("inc\classes\CourseService.class.php");
 require_once("inc\classes\FileService.class.php");
-require_once("inc\classes\page.class.php");
+require_once("inc\classes\Page.class.php");
 
 //If there was a post to create then create
 if(isset($_POST) && !empty($_POST)) {
@@ -34,14 +34,14 @@ if(isset($_POST) && !empty($_POST)) {
                 //Assemble the new course
                 $course = courseService::createCourse();
                 //Update the course
-                updateCourse($updCourse);
+                courseService::updateCourse($course);
         }
 }     
 
 //If the get action was delete then delete
 if( isset($_GET["submit"]) && !empty($_GET["submit"]) ) {
         if ($_GET["submit"] == "delete") {
-                courseService::deteleCourse($_GET["cName"]);
+                courseService::deleteCourse($_GET["cName"]);
         }
 }
 
@@ -52,23 +52,24 @@ Page::setTitle("GPA Calculator - Thi Hong Gam Tran 29, Jonah Roesler");
 Page::htmlHead();
 
 //List Courses
-Page::listCourses( CourseService::getCourses());
+Page::listCourses(courseService::getCourses());
 
 //Show GPA
 
 //If someone wanted to edit a course then show the edit form otherwise show the create form
 if( isset($_GET["submit"]) && !empty($_GET["submit"] && $_GET["submit"] == "edit") ) {
         $getCourse = CourseService::getCourse($_GET["cName"]);
-        Page::editForm($getCourse);
+        Page::editCourse($getCourse);
 }
 else {
-        Page::createForm();  
+        Page::createCourse();  
 }
 
 //Show the footer
 Page::htmlFoot();
 
 ?>
+
 
 
 
