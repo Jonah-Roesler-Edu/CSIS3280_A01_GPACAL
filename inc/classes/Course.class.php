@@ -8,7 +8,7 @@ class Course implements ICourse {
 
     private $_sName = "";
     private $_fName = "";
-    private $_percentage = "";
+    private $_percent = "";
     private $_cHours = "";
     private $_lGrade = "";
     private $_gpaPoint = "";
@@ -27,7 +27,7 @@ class Course implements ICourse {
 
         $this->_sName = $code;
         $this->_fName = $name;
-        $this->_percentage = $percent;
+        $this->_percent = $percent;
         $this->_cHours = $credit;
         //Set the percentile because we need it later.
         //Call calcScores to calculate letter grade and GPA points
@@ -41,7 +41,7 @@ class Course implements ICourse {
 
     public function getFullName() : string {return $this->_fName; }
 
-    public function getPercentile() : float {return $this->_percentage; }
+    public function getPercentile() : float {return $this->_percent; }
     
     public function getCreditHours() : int { return $this->_cHours; }
 
@@ -118,6 +118,17 @@ class Course implements ICourse {
 
     public function setCreditHours(int $creditHours) {
         $this->_cHours = $creditHours;
+    }
+
+    public function getCourseArray() {
+        $courseArr = array();
+        $courseArr[] = $this->_sName;
+        $courseArr[] = $this->_fName;
+        $courseArr[] = $this->_percent;
+        $courseArr[] = $this->_cHours;
+        $courseArr[] = $this->_lGrade;
+        $courseArr[] = $this->_gpaPoint;
+        return $courseArr;
     }
 
 }

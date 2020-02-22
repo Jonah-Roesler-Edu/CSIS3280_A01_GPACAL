@@ -28,13 +28,14 @@ class Page  {
         <tr>
     <?php
     foreach($courses as $course) {
+        $courseArray = $course->getCourseArray();
         echo "<tr>";
-        for($x = 0; $x<count($course); $x++) {
+        for($x = 0; $x<count($courseArray); $x++) {
             echo "<td>";
-            echo $course[$x];
+            echo $courseArray[$x];
             echo "</td>";
         }
-        echo "</tr>";
+        
     ?>
     <form method="GET" action="" enctype="multipart/form-data">
         <input type = "hidden" 
@@ -44,6 +45,8 @@ class Page  {
         <td><input type="submit" name="submit" value="delete"></td>
     </form>
     <?php
+
+        echo "</tr>";
     }
     ?>
     </tbody>

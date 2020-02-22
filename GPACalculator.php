@@ -20,6 +20,9 @@ require_once("inc\classes\CourseService.class.php");
 require_once("inc\classes\FileService.class.php");
 require_once("inc\classes\Page.class.php");
 
+//Initialize courseService by reading file
+CourseService::parseCourseFile( FileService::read() );
+
 //If there was a post to create then create
 if(isset($_POST) && !empty($_POST)) {
         if(isset($_POST["flag"]) && $_POST["flag"] == "create") {
@@ -27,7 +30,6 @@ if(isset($_POST) && !empty($_POST)) {
                 $course = courseService::createCourse();
                 //Add the new course
                 courseService::addCourse($course);
-
         }
         //If then edit.
         else if(isset($_POST["flag"]) && $_POST["flag"] == "edit") {
