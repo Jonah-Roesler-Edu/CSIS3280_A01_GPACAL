@@ -30,7 +30,7 @@ class courseService {
             //flag for finding course
             $coursefound = null;
             foreach(self::$_courses as $course) {
-                if($course[0] == $shortName) {
+                if($course->getShortName() == $shortName) {
                     $coursefound = $course;
                 }
             }
@@ -160,6 +160,8 @@ class courseService {
                     $newCourse->setFullName($columns[1]);
                     $newCourse->setPercentile($columns[2]);
                     $newCourse->setCreditHours((int) $columns[3]);
+
+                    $newCourse->calcScores();
         
                     //Push the course to the collection
                     self::$_courses[] = $newCourse;

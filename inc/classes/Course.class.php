@@ -56,7 +56,7 @@ class Course implements ICourse {
     }  
 
     public function setPercentile(string $percentile) {
-        $this->_percentile = $percentile;
+        $this->_percent = $percentile;
         $this->calcScores();
     }
 
@@ -66,7 +66,6 @@ class Course implements ICourse {
 
     //Calculate the GPA points and grade based on percent
     public function calcScores(){
-        $this->_grade = "";
         if($this->_percent > 49) {
             if($this->_percent > 54) {
                 if($this->_percent > 59) {
@@ -77,41 +76,39 @@ class Course implements ICourse {
                                     if($this->_percent > 84) {
                                         if($this->_percent > 89) {
                                             if($this->_percent > 94) {
-                                                $this->_grade = "A+";
+                                                $this->_lGrade = "A+";
                                                 $this->_gpaPoint = 4.33;
                                             }else{ 
-                                            $this->_grade = "A"; 
+                                            $this->_lGrade = "A"; 
                                             $this->_gpaPoint = 4;}
                                         }else{  
-                                        $this->_grade = "A-"; 
+                                        $this->_lGrade = "A-"; 
                                         $this->_gpaPoint = 3.67;}
                                     }else{ 
-                                    $this->_grade = "B+"; 
+                                    $this->_lGrade = "B+"; 
                                     $this->_gpaPoint = 3.33;}
                                 }else{
-                                $this->_grade = "B"; 
+                                $this->_lGrade = "B"; 
                                 $this->_gpaPoint = 3;}
                             }else{ 
-                            $this->_grade = "B-"; 
+                            $this->_lGrade = "B-"; 
                             $this->_gpaPoint = 2.67;}
                         }else{ 
-                        $this->_grade = "C+"; 
+                        $this->_lGrade = "C+"; 
                         $this->_gpaPoint = 2.33;}
                     }else{
-                    $this->_grade = "C";
+                    $this->_lGrade = "C";
                     $this->_gpaPoint = 2;}
                 }else{ 
-                $this->_grade = "C-";
+                $this->_lGrade = "C-";
                 $this->_gpaPoint = 1.67;}
             } else{ 
-            $this->_grade = "P";
+            $this->_lGrade = "P";
             $this->_gpaPoint = 1;}
 
         } else { 
-        $this->_grade = "F";
+        $this->_lGrade = "F";
         $this->_gpaPoint = 0;}
-
-        return $this->_grade;
     }
 
     //Setters
