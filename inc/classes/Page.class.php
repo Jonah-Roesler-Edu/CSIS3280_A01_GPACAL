@@ -40,7 +40,7 @@ class Page  {
     <form method="GET" action="" enctype="multipart/form-data">
         <input type = "hidden" 
             name = "cName" 
-            value="<?php $course->getShortName() ?>">
+            value="<?php echo $course->getShortName() ?>">
         <td><input type="submit" name="submit" value="edit"></td>
         <td><input type="submit" name="submit" value="delete"></td>
     </form>

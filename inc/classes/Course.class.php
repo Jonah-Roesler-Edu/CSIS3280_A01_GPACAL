@@ -34,14 +34,12 @@ class Course implements ICourse {
         $this->calcScores();
     }
 
-
-
     //Getters
     public function getShortName() : string {return $this->_sName; }
 
     public function getFullName() : string {return $this->_fName; }
 
-    public function getPercentile() : float {return $this->_percent; }
+    public function getPercentile() : float {return (float) $this->_percent; }
     
     public function getCreditHours() : int { return $this->_cHours; }
 
@@ -49,7 +47,22 @@ class Course implements ICourse {
 
     public function getGPA(): float {return $this->_gpaPoint; }
 
+    public function setFullName(string $fullName) {
+        $this->_fName = $fullName;
+    }
 
+    public function setShortName(string $shortName) {
+        $this->_sName = $shortName;
+    }  
+
+    public function setPercentile(string $percentile) {
+        $this->_percentile = $percentile;
+        $this->calcScores();
+    }
+
+    public function setCreditHours(int $creditHours) {
+        $this->_cHours = $creditHours;
+    }
 
     //Calculate the GPA points and grade based on percent
     public function calcScores(){
@@ -103,22 +116,7 @@ class Course implements ICourse {
 
     //Setters
 
-    public function setFullName(string $fullName) {
-        $this->_fName = $fullName;
-    }
 
-    public function setShortName(string $shortName) {
-        $this->_sName = $shortName;
-    }  
-
-    public function setPercentile(string $percentile) {
-        $this->_percentile = $percentile;
-        $this->calcScores();
-    }
-
-    public function setCreditHours(int $creditHours) {
-        $this->_cHours = $creditHours;
-    }
 
     public function getCourseArray() {
         $courseArr = array();

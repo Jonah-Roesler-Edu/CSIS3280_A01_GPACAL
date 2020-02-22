@@ -54,8 +54,8 @@ class courseService {
         //read all the courses in
         for($i=0;$i<count(self::$_courses);$i++)
         {
-            // $shortName = $_POST["cShortName"];
-            if($shortName == self::$_courses[$i][0])
+
+            if($shortName == self::$_courses[$i]->getShortName())
             {
                 //Pull the current course out of the array
                 array_splice(self::$_courses,$i,1);
@@ -75,7 +75,7 @@ class courseService {
 
         // file_put_contents("data/transcriptCopy.csv",print_r($newArrayCourses,true));
 
-        self::writeContent($courses);
+        self::writeContent(self::$_courses);
     } 
 
 
@@ -91,27 +91,34 @@ class courseService {
         }
 
         //Write the file
-         self::writeContent($updateCourse);
+         self::writeContent(self::$_courses);
         
     }
 
     //This function writes the contents of self::$course to disk
-    static function writeContent($courseArr) {
-        
+    static function writeContent($courses) {
+
         //Set the header
         $csvLine = "coursecode,fullname,percentile,credithours\n";
         //Iterate through the courses
 
         //Assemble the CSV string
-        foreach($courseArr as $courseLine) {
-            for($y = 0; $y<count($courseLine); $y++) {
-                if($y == (count($courseLine)-1) ) {
-                    $csvLine .= $courseLine[$y];
-                }
-                else {
-                    $csvLine .= ($courseLine[$y] . ",");
-                }
-            }
+        foreach($courses as $course) {
+            // $courseLine = $course->getCourseArray();
+            // for($y = 0; $y<count($courseLine); $y++) {
+            //     if($y == (count($courseLine)-1) ) {
+            //         $csvLine .= $courseLine[$y];
+            //     }
+            //     else {
+            //         $csvLine .= ($courseLine[$y] . ",");
+            //     }
+            // }
+            //Should ONLY write the 4 values from headers into data
+            //>>>>>coursecode || fullname || percentile || credithours <<<<<
+            $csvLine .= $course->getShortName() . ",";
+            $csvLine .= $course->getFullName() . ",";
+            $csvLine .= $course->getPercentile() . ",";
+            $csvLine .= $course->getCreditHours();
             $csvLine .= "\n";
         }
        
