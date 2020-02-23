@@ -28,7 +28,7 @@ class Page  {
         <tr>
     <?php
     foreach($courses as $course) {
-        var_dump($course);
+        // var_dump($course);
         $courseArray = $course->getCourseArray();
         echo "<tr>";
         for($x = 0; $x<count($courseArray); $x++) {
@@ -70,7 +70,7 @@ class Page  {
                 <td><input type="text" name="crSN"></td>
                 <td><input type="text" name="crFN"></td>
                 <td><input type="text" name="crPerc"></td>
-                <td><input type="number" name="crCredit"></td>
+                <td><input type="text" name="crCredit"></td>
                 <td><input type="submit" name="Add"></td>
             </form>
         </tr>
@@ -85,18 +85,18 @@ class Page  {
             <th>Full Name</th>
             <th>Percent Grade</th>
             <th>Credit Hours</th>
-        </thead>   
-        <form method="POST" action="" enctype="multipart/form-data">
+        </thead>
+        <form method="POST" action="GPACalculator.php" enctype="multipart/form-data">
             <input type="hidden" name="flag" value="edit">
             <td><input type="text" name="edSN" value = 
-                " <?php echo $course->getShortName() ?>"></td>
+                "<?php echo $course->getShortName() ?>"></td>
             <td><input type="text" name="edFN" value = 
-                " <?php echo $course->getFullName() ?>"></td>
+                "<?php echo $course->getFullName() ?>"></td>
             <td><input type="text" name="edPerc" value = 
-                " <?php echo $course->getPercentile() ?>"></td>
-            <td><input type="number" name="edCredit" value = 
-                " <?php echo $course->getCreditHours() ?>"></td>
-            <td><input type="submit" value = "edit"></td>
+                "<?php echo $course->getPercentile() ?>"></td>
+            <td><input type="text" name="edCredit" value = 
+                "<?php echo $course->getCreditHours() ?>"></td>
+            <td><input type="submit" ></td>
         </form>
     <?php }
 

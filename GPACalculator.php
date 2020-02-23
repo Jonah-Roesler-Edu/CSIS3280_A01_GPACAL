@@ -25,16 +25,30 @@ CourseService::parseCourseFile( FileService::read() );
 
 //If there was a post to create then create
 if(isset($_POST) && !empty($_POST)) {
+        var_dump($_POST);
         if(isset($_POST["flag"]) && $_POST["flag"] == "create") {
                 //Assemble the new course
-                $course = courseService::createCourse();
+                $course = new Course();
+                $course->setCourseInfo(
+                        $_POST["crSN"],
+                        $_POST["crFN"],
+                        $_POST["crPerc"],
+                        $_POST["crCredit"]
+                );
+                var_dump($course);
                 //Add the new course
                 courseService::addCourse($course);
         }
         //If then edit.
         else if(isset($_POST["flag"]) && $_POST["flag"] == "edit") {
                 //Assemble the new course
-                $course = courseService::createCourse();
+                $course = new Course();
+                $course->setCourseInfo(
+                        $_POST["edSN"],
+                        $_POST["edFN"],
+                        $_POST["edPerc"],
+                        $_POST["edCredit"]
+                );
                 //Update the course
                 courseService::updateCourse($course);
         }

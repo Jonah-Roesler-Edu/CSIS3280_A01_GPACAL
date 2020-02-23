@@ -13,14 +13,13 @@ class Course implements ICourse {
     private $_lGrade = "";
     private $_gpaPoint = "";
 
-
+    //Default constructor
     function __construct()
     {
                 
     }
-
-    //Default constructor
-    public function setCourseInfo(   $code = "X", 
+    
+    public function setCourseInfo($code = "X", 
                     $name = "Y", 
                     $percent = 0, 
                     $credit = 0) {
@@ -41,7 +40,7 @@ class Course implements ICourse {
 
     public function getPercentile() : float {return (float) $this->_percent; }
     
-    public function getCreditHours() : int { return $this->_cHours; }
+    public function getCreditHours() : int { return (int) $this->_cHours; }
 
     public function getLetterGrade() : string {return $this->_lGrade; }
 

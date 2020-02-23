@@ -9,18 +9,21 @@ class courseService {
 //Add the service back
     //Store the courses in an array
     static function addCourse($course) {
-        $_courses[] = $course;
+        self::$_courses[] = $course;
+        self::writeContent(self::$_courses);
     }
 
     //This function creates a single course
-    static function createCourse() {
-        $course = new Course(
-            $_POST["crSN"],
-            $_POST["crFN"],
-            $_POST["crPerc"],
-            $_POST["crCredit"]);
-        return $course;
-    }   
+    // static function POSTCourse($POSTARR) {
+
+    //     $course = new Course();
+    //     $course->setCourseInfo(
+    //         $POSTARR["crSN"],
+    //         $POSTARR["crFN"],
+    //         $POSTARR["crPerc"],
+    //         $POSTARR["crCredit"]);
+    //     return $course;
+    // }   
 
 
     //This function reads a single course given the title.
@@ -80,13 +83,22 @@ class courseService {
 
 
     //This function updates and course in the file.
-    function updateCourse(Course $updateCourse){
+    static function updateCourse(Course $updateCourse){
 
         //Find the matching course
-        foreach(self::$_courses as $course) {
-            if($course[0] == $updateCourse[0]) {
+        // foreach(self::$_courses as $course) {
+        //     if(trim($course->getShortName() ) == trim($updateCourse->getShortName() ) ) {
+        //         //replace matching course with updated course
+        //         $course = $updateCourse;
+        //         $course->setFullName("I WORK HERE");
+        //     }
+        // }
+
+        for($x = 0; $x < count(self::$_courses); $x++) {
+            if( trim(self::$_courses[$x]->getShortName() ) == 
+                trim($updateCourse->getShortName() ) ) {
                 //replace matching course with updated course
-                $course = $updateCourse;
+                self::$_courses[$x] = $updateCourse;
             }
         }
 
