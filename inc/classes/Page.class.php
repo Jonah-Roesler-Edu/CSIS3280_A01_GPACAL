@@ -55,50 +55,74 @@ class Page  {
     <?php 
     }
 
-    static function createCourse() { ?>
+   static function createCourse() { ?>
         <h2>Create Course</h2>
         <table>
-        <thead>
-            <th>Course Code</th>
-            <th>Full Name</th>
-            <th>Percent Grade</th>
-            <th>Credit Hours</th>
-        </thead>    
+        <form method="POST" action="" enctype="multipart/form-data">
+        <input type="hidden" name="flag" value="create">
         <tr>
-            <form method="POST" action="" enctype="multipart/form-data">
-                <input type="hidden" name="flag" value="create">
-                <td><input type="text" name="crSN"></td>
-                <td><input type="text" name="crFN"></td>
-                <td><input type="text" name="crPerc"></td>
-                <td><input type="text" name="crCredit"></td>
-                <td><input type="submit" name="Add"></td>
-            </form>
+            <td>Short Name </td>
+            <td>
+            <input type="text" name="crSN">
+            </td>
         </tr>
+        <tr>
+            <td>Full Name</td>
+            <td>
+            <input type="text" name="crFN">
+            </td>
+        </tr>
+        <tr>
+            <td>Percentile</td>
+            <td> <input type="text" name="crPerc"></td>
+        </tr>
+        <tr>
+            <td>Credit Hours</td>
+            <td><input type="number" name="crCredit"></td>
+        </tr>
+        <tr>
+            <td>
+            <input type="submit" value="Add">
+            </td> 
+        </tr>
+        </form>
         </table>
+
+       
     <?php }
 
     static function editCourse(Course $course) { ?>
         <h2>Edit Course</h2>
         <table>
-        <thead>
-            <th>Course Code</th>
-            <th>Full Name</th>
-            <th>Percent Grade</th>
-            <th>Credit Hours</th>
-        </thead>
         <form method="POST" action="GPACalculator.php" enctype="multipart/form-data">
-            <input type="hidden" name="flag" value="edit">
+        <input type="hidden" name="flag" value="edit">
+        <tr>
+            <td>Short Name</td>  
             <td><input type="text" name="edSN" value = 
                 "<?php echo $course->getShortName() ?>"></td>
+        </tr>
+        <tr>
+            <td>Full Name</td>
             <td><input type="text" name="edFN" value = 
-                "<?php echo $course->getFullName() ?>"></td>
+                "<?php echo $course->getFullName() ?>"></td>  
+        </tr>
+        <tr>
+            <td>Percent Grade</td>
             <td><input type="text" name="edPerc" value = 
                 "<?php echo $course->getPercentile() ?>"></td>
+        </tr>
+        <tr>
+            <td>Credit Hours</td>
             <td><input type="text" name="edCredit" value = 
                 "<?php echo $course->getCreditHours() ?>"></td>
-            <td><input type="submit" ></td>
-        </form>
+        </tr>
+        <tr>
+            <td><input type="submit" ></td>  
+        </tr>
+        </table>
+        
     <?php }
+
 
     function showGPA(Array $courses)  {
     }
