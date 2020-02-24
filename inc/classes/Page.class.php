@@ -46,16 +46,17 @@ class Page  {
         <td><input type="submit" name="submit" value="delete"></td>
     </form>
     <?php
-
         echo "</tr>";
     }
     ?>
     </tbody>
     </table>
+    
     <?php 
     }
+    
 
-   static function createCourse() { ?>
+    static function createCourse() { ?>
         <h2>Create Course</h2>
         <table>
         <form method="POST" action="" enctype="multipart/form-data">
@@ -123,8 +124,20 @@ class Page  {
         
     <?php }
 
-
-    function showGPA(Array $courses)  {
+    static function showGPA(Array $courses)  {
+        $gpaTotal = 0;
+        
+        foreach($courses as $course) {
+            // var_dump($course);
+            $courseArray = $course->getCourseArray();
+            $gpaTotal += $courseArray[5]; 
+            
+        }
+        $averageGPA = $gpaTotal/count($courses);
+        ?>
+        <h2> <?php echo("The GPA for the courses list is: ".number_format($averageGPA,2,'.',',')); ?></h2>
+        <?php
+    
     }
 
     static function htmlHead() {
