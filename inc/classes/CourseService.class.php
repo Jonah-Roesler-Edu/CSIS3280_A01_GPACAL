@@ -13,19 +13,6 @@ class courseService {
         self::writeContent(self::$_courses);
     }
 
-    //This function creates a single course
-    // static function POSTCourse($POSTARR) {
-
-    //     $course = new Course();
-    //     $course->setCourseInfo(
-    //         $POSTARR["crSN"],
-    //         $POSTARR["crFN"],
-    //         $POSTARR["crPerc"],
-    //         $POSTARR["crCredit"]);
-    //     return $course;
-    // }   
-
-
     //This function reads a single course given the title.
     static function getCourse(string $shortName) : Course
     {
@@ -64,19 +51,9 @@ class courseService {
                 array_splice(self::$_courses,$i,1);
             }
         }
-        //Not necessary >> already spliced from $courses
-        //New Array for the courses
-        // $newArrayCourses = array();
-        // foreach(self::$courses as $course)
-        // {
-        //      //Add it to the arrays
-        //     $newArrayCourses[] = $course;
-        // }
-        
+    
         //OVerwrite the new courses.
         //Write the file
-
-        // file_put_contents("data/transcriptCopy.csv",print_r($newArrayCourses,true));
 
         self::writeContent(self::$_courses);
     } 
@@ -84,15 +61,6 @@ class courseService {
 
     //This function updates and course in the file.
     static function updateCourse(Course $updateCourse){
-
-        //Find the matching course
-        // foreach(self::$_courses as $course) {
-        //     if(trim($course->getShortName() ) == trim($updateCourse->getShortName() ) ) {
-        //         //replace matching course with updated course
-        //         $course = $updateCourse;
-        //         $course->setFullName("I WORK HERE");
-        //     }
-        // }
 
         for($x = 0; $x < count(self::$_courses); $x++) {
             if( trim(self::$_courses[$x]->getShortName() ) == 
@@ -116,17 +84,9 @@ class courseService {
 
         //Assemble the CSV string
         foreach($courses as $course) {
-            // $courseLine = $course->getCourseArray();
-            // for($y = 0; $y<count($courseLine); $y++) {
-            //     if($y == (count($courseLine)-1) ) {
-            //         $csvLine .= $courseLine[$y];
-            //     }
-            //     else {
-            //         $csvLine .= ($courseLine[$y] . ",");
-            //     }
-            // }
+            
             //Should ONLY write the 4 values from headers into data
-            //>>>>>coursecode || fullname || percentile || credithours <<<<<
+            //>>>>>coursecode || fullname || percentile || credithours <<<<
             $csvLine .= $course->getShortName() . ",";
             $csvLine .= $course->getFullName() . ",";
             $csvLine .= $course->getPercentile() . ",";
@@ -137,7 +97,7 @@ class courseService {
         //Write the CSV String
         FileService::write($csvLine);
      
-        //Exception Mesage the user
+        //Exception Mesage the user 
 
         //Exception to the log file.
     }
@@ -178,10 +138,7 @@ class courseService {
                     //Push the course to the collection
                     self::$_courses[] = $newCourse;
                 }
-                else {
-                    //Throw an exception with the appropriate message
-                    throw new Exception("Problem in parsing file.");
-                }
+                
                 }
                 catch (Exception $ex)
                 {
@@ -193,6 +150,9 @@ class courseService {
     static function getCourses() {
         return self::$_courses;
     }
+    
+    
+   
  
 }
 
