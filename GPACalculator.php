@@ -25,7 +25,7 @@ CourseService::parseCourseFile( FileService::read() );
 
 //If there was a post to create then create
 if(isset($_POST) && !empty($_POST)) {
-        var_dump($_POST);
+        // var_dump($_POST);
         if(isset($_POST["flag"]) && $_POST["flag"] == "create") {
                 //Assemble the new course
                 $course = new Course();
@@ -35,7 +35,7 @@ if(isset($_POST) && !empty($_POST)) {
                         $_POST["crPerc"],
                         $_POST["crCredit"]
                 );
-                var_dump($course);
+                // var_dump($course);
                 //Add the new course
                 courseService::addCourse($course);
         }
@@ -61,17 +61,6 @@ if( isset($_GET["submit"]) && !empty($_GET["submit"]) ) {
         }
 }
 
-//If there was a get to delete then delete
-
-//New page ....
-Page::setTitle("GPA Calculator - Thi Hong Gam Tran 29, Jonah Roesler");
-Page::htmlHead();
-
-//List Courses
-Page::listCourses(courseService::getCourses());
-
-//Show GPA
-
 //If someone wanted to edit a course then show the edit form otherwise show the create form
 if( isset($_GET["submit"]) && !empty($_GET["submit"] && $_GET["submit"] == "edit") ) {
         $getCourse = CourseService::getCourse($_GET["cName"]);
@@ -81,13 +70,21 @@ else {
         Page::createCourse();  
 }
 
+
+//New page ....
+Page::setTitle("GPA Calculator - Thi Hong Gam Tran 29, Jonah Roesler");
+Page::htmlHead();
+
+//List Courses
+Page::listCourses(courseService::getCourses());
+
+//Show GPA
+Page::showGPA(courseService::getCourses());
+
+
 //Show the footer
 Page::htmlFoot();
 
 ?>
-
-
-
-
 
 
