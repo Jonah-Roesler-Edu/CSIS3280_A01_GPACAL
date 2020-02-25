@@ -30,12 +30,34 @@ class Page  {
     foreach($courses as $course) {
         // var_dump($course);
         $courseArray = $course->getCourseArray();
+        $pecentage = $courseArray[2];
         echo "<tr>";
-        for($x = 0; $x<count($courseArray); $x++) {
-            echo "<td>";
-            echo $courseArray[$x];
-            echo "</td>";
+        for($x=0; $x<count($courseArray);$x++)
+        {
+            if($pecentage<50)
+            {
+                echo "<td class='red'>".$courseArray[$x]."</td>";
+            }
+            if($pecentage>=50 && $pecentage<60)
+            {
+                echo "<td class='red'>".$courseArray[$x]."</td>";
+            }
+            else if($pecentage>=60 && $pecentage<70)
+            {
+                echo "<td class='orange'>".$courseArray[$x]."</td>";
+            }
+            else if($pecentage>=70 && $pecentage<80)
+            {
+                echo "<td class='yellow'>".$courseArray[$x]."</td>";
+            }
+            else 
+            {
+                echo "<td class='green'>".$courseArray[$x]."</td>";
+            }
+        
         }
+       
+            
         
     ?>
     <form method="GET" action="" enctype="multipart/form-data">
@@ -146,6 +168,20 @@ class Page  {
         <html>
             <head>
                 <title><?php echo self::$_title ?></title>
+                <style>
+                .red{
+                    background: #FF6347;
+                }
+                .yellow{
+                    background: #FFA500;
+                }
+                .orange{
+                    background: orange;
+                }
+                .green{
+                    background: #66CDAA;
+                }
+            </style>
             </head>
             <body>
                 <h1><?php echo self::$_title ?></h1>
