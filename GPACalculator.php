@@ -61,14 +61,7 @@ if( isset($_GET["submit"]) && !empty($_GET["submit"]) ) {
         }
 }
 
-//If someone wanted to edit a course then show the edit form otherwise show the create form
-if( isset($_GET["submit"]) && !empty($_GET["submit"] && $_GET["submit"] == "edit") ) {
-        $getCourse = CourseService::getCourse($_GET["cName"]);
-        Page::editCourse($getCourse);
-}
-else {
-        Page::createCourse();  
-}
+
 
 
 //New page ....
@@ -78,6 +71,15 @@ Page::htmlHead();
 //List Courses
 Page::listCourses(courseService::getCourses());
 
+//If someone wanted to edit a course then show the edit form otherwise show the create form
+if( isset($_GET["submit"]) && !empty($_GET["submit"] && $_GET["submit"] == "edit") ) {
+        $getCourse = CourseService::getCourse($_GET["cName"]);
+        Page::editCourse($getCourse);
+}
+else {
+        Page::createCourse();  
+}
+
 //Show GPA
 Page::showGPA(courseService::getCourses());
 
@@ -86,5 +88,4 @@ Page::showGPA(courseService::getCourses());
 Page::htmlFoot();
 
 ?>
-
 
