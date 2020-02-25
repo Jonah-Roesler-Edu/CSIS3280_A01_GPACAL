@@ -1,5 +1,12 @@
 <?php
+/*
+Thi Hong Gam Tran
+Jonah Roesler
+assignment 1 GPA CALCULATOR
 
+CSIS 3280-001
+Rahim Virani
+*/
 
 class courseService {
 
@@ -149,6 +156,17 @@ class courseService {
     }
     static function getCourses() {
         return self::$_courses;
+    }
+
+    //sorts an array of courses
+    static function courseSort($aCourse, $bCourse) {
+        if($aCourse->getPercentile() > $bCourse->getPercentile() ) {
+            return -1;
+        }else if ($aCourse->getPercentile() < $bCourse->getPercentile() ) {
+            return (1);
+        }else {
+            return 0;
+        }
     }
     
     

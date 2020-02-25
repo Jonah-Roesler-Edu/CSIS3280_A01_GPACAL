@@ -1,4 +1,13 @@
 <?php
+/*
+Thi Hong Gam Tran
+Jonah Roesler
+assignment 1 GPA CALCULATOR
+
+CSIS 3280-001
+Rahim Virani
+*/
+
 
 // coursecode,fullname,percentile,credithours
 

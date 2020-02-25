@@ -1,4 +1,13 @@
 <?php
+/*
+Thi Hong Gam Tran
+Jonah Roesler
+assignment 1 GPA CALCULATOR
+
+CSIS 3280-001
+Rahim Virani
+*/
+
 
 class Page  {
 
@@ -27,6 +36,9 @@ class Page  {
         <tbody>      
         <tr>
     <?php
+
+    usort($courses, array('courseService', 'courseSort'));
+
     foreach($courses as $course) {
         // var_dump($course);
         $courseArray = $course->getCourseArray();
@@ -34,23 +46,37 @@ class Page  {
         echo "<tr>";
         for($x=0; $x<count($courseArray);$x++)
         {
-            if($pecentage<50)
+            // if($pecentage<50)
+            // {
+            //     echo "<td BGCOLOR='#FF6347'>".$courseArray[$x]."</td>";
+            // }
+            // else if($pecentage>=50 && $pecentage<60)
+            // {
+            //     echo "<td BGCOLOR='#FF6347'>".$courseArray[$x]."</td>";
+            // }
+            // else if($pecentage>=60 && $pecentage<70)
+            // {
+            //     echo "<td BGCOLOR='#FFA500'>".$courseArray[$x]."</td>";
+            // }
+            // else if($pecentage>=70 && $pecentage<80)
+            // {
+            //     echo "<td BGCOLOR='#FFFF00'>".$courseArray[$x]."</td>";
+            // }
+            // else 
+            // {
+            //     echo "<td BGCOLOR='#66CDAA'>".$courseArray[$x]."</td>";
+            // }
+            //RED
+            if($pecentage<65)
             {
                 echo "<td BGCOLOR='#FF6347'>".$courseArray[$x]."</td>";
             }
-            if($pecentage>=50 && $pecentage<60)
-            {
-                echo "<td BGCOLOR='#FF6347'>".$courseArray[$x]."</td>";
-            }
-            else if($pecentage>=60 && $pecentage<70)
-            {
-                echo "<td BGCOLOR='#FFA500'>".$courseArray[$x]."</td>";
-            }
-            else if($pecentage>=70 && $pecentage<80)
+            else if($pecentage>=65 && $pecentage <= 73)
             {
                 echo "<td BGCOLOR='#FFFF00'>".$courseArray[$x]."</td>";
             }
-            else 
+            //GREEN
+            else if($pecentage>=74)
             {
                 echo "<td BGCOLOR='#66CDAA'>".$courseArray[$x]."</td>";
             }
