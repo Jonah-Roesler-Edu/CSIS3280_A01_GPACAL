@@ -32,7 +32,7 @@ class FileService implements IFileService {
         //catch the exception
         catch(Exception $ex)
         {
-            echo error_log("File Read error");
+            echo error_log(("File Read error " . $ex->getMessage()), 3, ERRORLOG);
         }
         //close the file Handle
         fclose($fileHandle);
@@ -56,10 +56,8 @@ class FileService implements IFileService {
         catch(Exception $ex)
         {
             //Write to the error log
-            echo error_log("You cannot write the file");
+            echo error_log(("You cannot write the file " . $ex->getMessage()), 3, ERRORLOG);
         }
         fclose($fileHandle);                
-
     }
-
 }

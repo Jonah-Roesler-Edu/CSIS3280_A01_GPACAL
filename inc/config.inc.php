@@ -9,6 +9,6 @@ Rahim Virani
 */
 
 define("DATA_FILE", 'inc\data\transcript.csv');
-
+define("ERRORLOG", 'inc\data\errorlog.txt');
 
 ?>

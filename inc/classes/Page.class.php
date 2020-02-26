@@ -16,11 +16,17 @@ class Page  {
 
     // <?php }
 
+    //Set title
     static function setTitle($title) {
         self::$_title = $title;
     }
 
+    //Take course array
+    //List all courses > Sort courses
+    //Color courses by PERCENT
     static function listCourses(Array $courses)    {
+    
+    //Course headers
     ?>
     <table>
         <thead>
@@ -37,6 +43,7 @@ class Page  {
         <tr>
     <?php
 
+    //Sort courses
     usort($courses, array('courseService', 'courseSort'));
 
     foreach($courses as $course) {
@@ -46,27 +53,6 @@ class Page  {
         echo "<tr>";
         for($x=0; $x<count($courseArray);$x++)
         {
-            // if($pecentage<50)
-            // {
-            //     echo "<td BGCOLOR='#FF6347'>".$courseArray[$x]."</td>";
-            // }
-            // else if($pecentage>=50 && $pecentage<60)
-            // {
-            //     echo "<td BGCOLOR='#FF6347'>".$courseArray[$x]."</td>";
-            // }
-            // else if($pecentage>=60 && $pecentage<70)
-            // {
-            //     echo "<td BGCOLOR='#FFA500'>".$courseArray[$x]."</td>";
-            // }
-            // else if($pecentage>=70 && $pecentage<80)
-            // {
-            //     echo "<td BGCOLOR='#FFFF00'>".$courseArray[$x]."</td>";
-            // }
-            // else 
-            // {
-            //     echo "<td BGCOLOR='#66CDAA'>".$courseArray[$x]."</td>";
-            // }
-            //RED
             if($pecentage<65)
             {
                 echo "<td BGCOLOR='#FF6347'>".$courseArray[$x]."</td>";
@@ -84,7 +70,7 @@ class Page  {
         }
        
             
-        
+      //EDIT and DELETE buttons for each  
     ?>
     <form method="GET" action="" enctype="multipart/form-data">
         <input type = "hidden" 
@@ -104,6 +90,7 @@ class Page  {
     }
     
 
+    //CREATE COURSE FORM
     static function createCourse() { ?>
         <h2>Create Course</h2>
         <table>
@@ -140,6 +127,7 @@ class Page  {
        
     <?php }
 
+    //EDIT COURSE FORM
     static function editCourse(Course $course) { ?>
         <h2>Edit Course</h2>
         <table>
@@ -172,6 +160,7 @@ class Page  {
         
     <?php }
 
+    //CALCULATE GPA DISPLAY
     static function showGPA(Array $courses)  {
         $gpaTotal = 0;
         

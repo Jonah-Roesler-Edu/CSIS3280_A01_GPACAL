@@ -66,9 +66,6 @@ if( isset($_GET["submit"]) && !empty($_GET["submit"]) ) {
         }
 }
 
-
-
-
 //New page ....
 Page::setTitle("GPA Calculator - Thi Hong Gam Tran 29, Jonah Roesler");
 Page::htmlHead();

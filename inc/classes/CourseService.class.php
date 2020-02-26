@@ -100,13 +100,10 @@ class courseService {
             $csvLine .= $course->getCreditHours();
             $csvLine .= "\n";
         }
-       
+    
         //Write the CSV String
         FileService::write($csvLine);
-     
-        //Exception Mesage the user 
 
-        //Exception to the log file.
     }
 
 
@@ -144,12 +141,14 @@ class courseService {
         
                     //Push the course to the collection
                     self::$_courses[] = $newCourse;
+                } else {
+                    throw new Exception('Incorrect number of COLs at line: ' . ($i-1));
                 }
                 
                 }
                 catch (Exception $ex)
                 {
-                    echo $ex->getMessage();
+                    echo error_log(($ex->getMessage() ), 3, ERRORLOG);
                 }
         }
         //This function returns a list of courses, course objects in an array.

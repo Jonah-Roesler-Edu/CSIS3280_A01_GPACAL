@@ -28,6 +28,7 @@ class Course implements ICourse {
                 
     }
     
+    //input all course info and calculate courses
     public function setCourseInfo($code = "X", 
                     $name = "Y", 
                     $percent = 0, 
